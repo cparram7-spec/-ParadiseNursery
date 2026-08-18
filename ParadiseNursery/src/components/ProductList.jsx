@@ -1,9 +1,12 @@
 import Header from "./Header";
 import { useDispatch } from "react-redux";
 import { addItem } from "../redux/CartSlice";
+import { useState } from "react";
 
 function ProductList() {
   const dispatch = useDispatch();
+
+  const [addedItems, setAddedItems] = useState([]);
 
   const plants = [
     {
@@ -65,17 +68,28 @@ function ProductList() {
               .filter((plant) => plant.category === category)
               .map((plant) => (
                 <div key={plant.id}>
-                  <img
-                    src={plant.image}
-                    alt={plant.name}
-                    width="150"
-        />
+                  {plant.image}                    alt={plant.name}
+                    width="150"/
 
-<button
-  onClick={() => dispatch(addItem(plant))}
->
-  Add To Cart
-</button>
+                  <h3>{plant.name}</h3>
+
+                  <p>${plant.price}</p>
+
+                  <button
+                    disabled={addedItems.includes(plant.id)}
+                    onClick={() => {
+                      dispatch(addItem(plant));
+
+                      setAddedItems([
+                        ...addedItems,
+                        plant.id,
+                      ]);
+                    }}
+                  >
+                    {addedItems.includes(plant.id)
+                      ? "Added to Cart"
+                      : "Add To Cart"}
+                  </button>
                 </div>
               ))}
           </div>

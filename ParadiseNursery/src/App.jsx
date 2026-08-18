@@ -9,6 +9,7 @@ function Home() {
     <div className="landing-page">
       <div className="overlay">
         <AboutUs />
+        <h1>Welcome to Paradise Nursery</h1>
 
         <Link to="/plants">
           <button className="start-btn">
@@ -24,7 +25,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route
           path="/"
           element={<Home />}
@@ -39,7 +39,6 @@ function App() {
           path="/cart"
           element={<CartItem />}
         />
-
       </Routes>
     </BrowserRouter>
   );

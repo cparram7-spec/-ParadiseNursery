@@ -20,10 +20,13 @@ function CartItem() {
     0
   );
 
-  const totalCost = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const calculateTotalAmount = () => {
+    return cartItems.reduce(
+      (sum, item) =>
+        sum + item.price * item.quantity,
+      0
+    );
+  };
 
   return (
     <>
@@ -33,7 +36,9 @@ function CartItem() {
 
       <h2>Total Plants: {totalPlants}</h2>
 
-      <h2>Total Cost: ${totalCost}</h2>
+      <h2>
+        Total Cost: ${calculateTotalAmount()}
+      </h2>
 
       {cartItems.map((item) => (
         <div
