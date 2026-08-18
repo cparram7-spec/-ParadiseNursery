@@ -28,6 +28,18 @@ function CartItem() {
     );
   };
 
+  const handleIncrement = (id) => {
+    dispatch(increaseQuantity(id));
+  };
+
+  const handleDecrement = (id) => {
+    dispatch(decreaseQuantity(id));
+  };
+
+  const handleRemove = (id) => {
+    dispatch(removeItem(id));
+  };
+
   return (
     <>
       <Header />
@@ -62,7 +74,7 @@ function CartItem() {
 
           <button
             onClick={() =>
-              dispatch(increaseQuantity(item.id))
+              handleIncrement(item.id)
             }
           >
             +
@@ -70,7 +82,7 @@ function CartItem() {
 
           <button
             onClick={() =>
-              dispatch(decreaseQuantity(item.id))
+              handleDecrement(item.id)
             }
           >
             -
@@ -78,7 +90,7 @@ function CartItem() {
 
           <button
             onClick={() =>
-              dispatch(removeItem(item.id))
+              handleRemove(item.id)
             }
           >
             Remove

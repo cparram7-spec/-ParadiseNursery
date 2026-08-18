@@ -1,10 +1,14 @@
 import Header from "./Header";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../redux/CartSlice";
 import { useState } from "react";
 
 function ProductList() {
   const dispatch = useDispatch();
+
+  const totalItems = useSelector(
+    (state) => state.cart.cartItems.length
+  );
 
   const [addedItems, setAddedItems] = useState([]);
 
@@ -59,6 +63,8 @@ function ProductList() {
 
       <h1>Indoor Plants</h1>
 
+      <h3>Cart Items: {totalItems}</h3>
+
       {["Air Purifying Plants", "Succulents", "Tropical Plants"].map(
         (category) => (
           <div key={category}>
@@ -68,8 +74,7 @@ function ProductList() {
               .filter((plant) => plant.category === category)
               .map((plant) => (
                 <div key={plant.id}>
-                  {plant.image}                    alt={plant.name}
-                    width="150"/
+                  {plant.image}
 
                   <h3>{plant.name}</h3>
 
