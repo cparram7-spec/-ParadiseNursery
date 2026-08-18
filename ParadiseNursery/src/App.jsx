@@ -1,3 +1,4 @@
+import CartItem from "./components/CartItem";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import ProductList from "./components/ProductList";
 import AboutUs from "./components/AboutUs";
@@ -19,10 +20,6 @@ function Home() {
   );
 }
 
-function Cart() {
-  return <h1>Shopping Cart</h1>;
-}
-
 function App() {
   return (
     <BrowserRouter>
@@ -40,7 +37,7 @@ function App() {
 
         <Route
           path="/cart"
-          element={<Cart />}
+          element={<CartItem />}
         />
 
       </Routes>

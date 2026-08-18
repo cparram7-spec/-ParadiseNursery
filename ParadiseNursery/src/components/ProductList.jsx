@@ -1,50 +1,87 @@
+import Header from "./Header";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/CartSlice";
+
 function ProductList() {
+  const dispatch = useDispatch();
+
+  const plants = [
+    {
+      id: 1,
+      category: "Air Purifying Plants",
+      name: "Snake Plant",
+      price: 25,
+      image: "https://via.placeholder.com/150"
+    },
+    {
+      id: 2,
+      category: "Air Purifying Plants",
+      name: "Peace Lily",
+      price: 30,
+      image: "https://via.placeholder.com/150"
+    },
+    {
+      id: 3,
+      category: "Succulents",
+      name: "Aloe Vera",
+      price: 15,
+      image: "https://via.placeholder.com/150"
+    },
+    {
+      id: 4,
+      category: "Succulents",
+      name: "Jade Plant",
+      price: 18,
+      image: "https://via.placeholder.com/150"
+    },
+    {
+      id: 5,
+      category: "Tropical Plants",
+      name: "Monstera",
+      price: 40,
+      image: "https://via.placeholder.com/150"
+    },
+    {
+      id: 6,
+      category: "Tropical Plants",
+      name: "Pothos",
+      price: 22,
+      image: "https://via.placeholder.com/150"
+    }
+  ];
+
   return (
-    <div>
+    <>
+      <Header />
+
       <h1>Indoor Plants</h1>
 
-      <h2>Air Purifying Plants</h2>
+      {["Air Purifying Plants", "Succulents", "Tropical Plants"].map(
+        (category) => (
+          <div key={category}>
+            <h2>{category}</h2>
 
-      <div>
-        <h3>Snake Plant</h3>
-        <p>$25</p>
-        <button>Add to Cart</button>
-      </div>
+            {plants
+              .filter((plant) => plant.category === category)
+              .map((plant) => (
+                <div key={plant.id}>
+                  {plant.image}
 
-      <div>
-        <h3>Peace Lily</h3>
-        <p>$30</p>
-        <button>Add to Cart</button>
-      </div>
+                  <h3>{plant.name}</h3>
 
-      <h2>Succulents</h2>
+                  <p>${plant.price}</p>
 
-      <div>
-        <h3>Aloe Vera</h3>
-        <p>$15</p>
-        <button>Add to Cart</button>
-      </div>
-
-      <div>
-        <h3>Jade Plant</h3>
-        <p>$18</p>
-        <button>Add to Cart</button>
-      </div>
-
-      <h2>Tropical Plants</h2>
-
-      <div>
-        <h3>Monstera</h3>
-        <p>$40</p>
-        <button>Add to Cart</button>
-      </div>
-
-      <div>
-        <h3>Pothos</h3>
-        <p>$22</p>
-        <button>Add to Cart</button>
-      </div>
-    </div>
+                  <button
+                    onClick={() => dispatch(addItem(plant))}
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+              ))}
+          </div>
+        )
+      )}
+    </>
   );
 }
 
