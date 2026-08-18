@@ -1,5 +1,6 @@
 import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import {
   increaseQuantity,
@@ -56,9 +57,7 @@ function CartItem() {
 
           <button
             onClick={() =>
-              dispatch(
-                increaseQuantity(item.id)
-              )
+              dispatch(increaseQuantity(item.id))
             }
           >
             +
@@ -66,9 +65,7 @@ function CartItem() {
 
           <button
             onClick={() =>
-              dispatch(
-                decreaseQuantity(item.id)
-              )
+              dispatch(decreaseQuantity(item.id))
             }
           >
             -
@@ -83,6 +80,12 @@ function CartItem() {
           </button>
         </div>
       ))}
+
+      <Link to="/plants">
+        <button>
+          Continue Shopping
+        </button>
+      </Link>
 
       <button
         onClick={() =>

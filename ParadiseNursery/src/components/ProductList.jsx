@@ -65,17 +65,17 @@ function ProductList() {
               .filter((plant) => plant.category === category)
               .map((plant) => (
                 <div key={plant.id}>
-                  {plant.image}
+                  <img
+                    src={plant.image}
+                    alt={plant.name}
+                    width="150"
+        />
 
-                  <h3>{plant.name}</h3>
-
-                  <p>${plant.price}</p>
-
-                  <button
-                    onClick={() => dispatch(addItem(plant))}
-                  >
-                    Add To Cart
-                  </button>
+<button
+  onClick={() => dispatch(addItem(plant))}
+>
+  Add To Cart
+</button>
                 </div>
               ))}
           </div>
